@@ -2,6 +2,31 @@ spring:
     application:
         name: JYSBlog
 
+#
+## 데이터베이스 연결 설정
+#
+#    datasource:
+#        url: jdbc:mysql://localhost:3306/mydatabase
+#        username: myuser
+#        password: secret
+
+    # Hibernate 설정
+jpa:
+    open-in-view: true
+    hibernate:
+        ddl-auto: create
+        naming:
+            physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        use-new-id-generator-mappings: false
+    show-sql: true
+    properties:
+        hibernate.format_sql: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+
+
+
+
 server:
     tomcat:
         accept-count: 100
