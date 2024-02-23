@@ -1,0 +1,16 @@
+spring:
+    application:
+        name: JYSBlog
+
+server:
+    tomcat:
+        accept-count: 100
+        threads:
+            max: 200
+
+logging:
+    level:
+        root: info
+    pattern:
+        console: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+
