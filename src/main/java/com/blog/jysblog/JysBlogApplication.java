@@ -36,7 +36,6 @@ public class JysBlogApplication implements WebMvcConfigurer {
                 .allowedOrigins("*") // 모든 도메인을 허용
                 .allowedHeaders("*") // 모든 헤더를 허용
                 .allowedMethods("GET", "POST", "DELETE", "PUT");
-
     }
 
     @PostConstruct
