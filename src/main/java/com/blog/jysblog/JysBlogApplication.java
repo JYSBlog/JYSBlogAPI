@@ -47,10 +47,10 @@ public class JysBlogApplication implements WebMvcConfigurer {
 
     @EventListener(ApplicationReadyEvent.class)
     public void applicationReadyEvent() {
-        log.info("Application name ::: {}", applicationName);
-        log.info("Tomcat thread limit ::: {}", threadLimit);
-        log.info("Tomcat connection limit ::: {}", connectionLimit);
-        log.info("Current locale ::: {}", Locale.getDefault());
-        log.info("Current time zone ::: {}", TimeZone.getDefault());
+        log.info("Application Name ::: {}", applicationName);
+        log.info("Tomcat Thread Limit ::: {}", threadLimit);
+        log.info("Tomcat Connection Limit ::: {}", connectionLimit);
+        log.info("Locale ::: {}", Locale.getDefault());
+        log.info("Time Zone ::: {}", TimeZone.getDefault());
     }
 }

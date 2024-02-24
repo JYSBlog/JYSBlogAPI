@@ -1,6 +1,6 @@
 spring:
   application:
-    name: JYSBlog
+    name: JYSBlogTest
 
 server:
   tomcat:
@@ -10,11 +10,10 @@ server:
 
 jasypt:
   encryptor:
-    key:
+    key: encodingTestKey
 
 logging:
   level:
     root: info
   pattern:
     console: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
-
