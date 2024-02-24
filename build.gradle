@@ -2,22 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.3'
 	id 'io.spring.dependency-management' version '1.1.4'
-	id 'jacoco'
 	id 'org.sonarqube' version '4.2.1.3168'
-}
-
-sonar {
-	properties {
-		property 'sonar.host.url', 'https://sonarcloud.io'
-		property 'sonar.organization', 'organizationKey'
-		property 'sonar.projectKey', 'projectKey'
-		property 'sonar.coverage.jacoco.xmlReportPaths', 'build/reports/jacoco/test/jacocoTestReport.xml'
-	}
-}
-jacocoTestReport {
-	reports {
-		xml.enabled true
-	}
 }
 
 group = 'com.blog'
@@ -66,4 +51,22 @@ jar {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+sonar {
+	properties {
+		property 'sonar.host.url', 'https://sonarcloud.io'
+		property "sonar.projectKey", "JYSBlog_JYSBlogAPI"
+		property "sonar.organization", "jysblog"
+		// 자코코 결과 리포트 주소
+		property 'sonar.coverage.jacoco.xmlReportPaths', 'build/reports/jacoco/index.xml'
+		property 'sonar.sources', 'src'
+		property 'sonar.language', 'java'
+		property 'sonar.sourceEncoding', 'UTF-8'
+		// 테스트 커버리지에서 제외할 클래스
+		property 'sonar.exclusions', '**/test/**, **/resources/**, **/*Application*.java, **/*Controller*.java, **/*Config.java' +
+				'**/*Response.java, **/*Exception.java, **/security/**, **/support/**, **/Q*.java'
+		property 'sonar.test.inclusions', '**/*Test.java'
+		property 'sonar.java.coveragePlugin', 'jacoco'
+	}
 }
