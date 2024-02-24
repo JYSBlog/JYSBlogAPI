@@ -23,7 +23,30 @@ jpa:
         hibernate.format_sql: true
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
+sonar:
+  organization: SonarCloud organization key 값
+  projectKey: SonarCloud project key 값
+  sources: .
 
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+name: Sonar analysis
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
 
