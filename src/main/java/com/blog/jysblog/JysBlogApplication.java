@@ -52,6 +52,5 @@ public class JysBlogApplication implements WebMvcConfigurer {
         log.info("Tomcat Connection Limit ::: {}", connectionLimit);
         log.info("Locale ::: {}", Locale.getDefault());
         log.info("Time Zone ::: {}", TimeZone.getDefault());
-        
     }
 }
