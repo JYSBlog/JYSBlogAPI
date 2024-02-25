@@ -73,10 +73,3 @@ sonar {
         property 'sonar.java.coveragePlugin', 'jacoco'
     }
 }
-
-test {
-    systemProperty 'spring.profiles.active', 'test'
-    useJUnitPlatform {
-        exclude("com/blog/**/*Application*.java")
-    }
-}

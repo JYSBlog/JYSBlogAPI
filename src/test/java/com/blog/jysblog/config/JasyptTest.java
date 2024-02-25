@@ -3,10 +3,10 @@ package com.blog.jysblog.config;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-@SpringBootTest
+@SpringJUnitConfig
 @ActiveProfiles("test") // application-test.yml 파일 불러오기
 public class JasyptTest {
 
