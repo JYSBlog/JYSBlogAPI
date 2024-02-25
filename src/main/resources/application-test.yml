@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: JYSBlogTest
+
+server:
+  tomcat:
+    accept-count: 100
+    threads:
+      max: 200
+
+jasypt:
+  encryptor:
+    key: encodingTestKey
+
+logging:
+  level:
+    root: info
+  pattern:
+    console: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
