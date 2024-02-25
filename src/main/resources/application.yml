@@ -2,26 +2,26 @@ spring:
   application:
     name: JYSBlog
 
-#
-## 데이터베이스 연결 설정
+    #
+    ## 데이터베이스 연결 설정
 
     datasource:
-        url: jdbc:mysql://localhost:3000/blog
-        username: bloguser
-        password: blogpw
+      url: jdbc:mysql://localhost:3307/blog
+      username: bloguser
+      password: blogpw
 
     # Hibernate 설정
 jpa:
-    open-in-view: true
-    hibernate:
-        ddl-auto: create
-        naming:
-            physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-        use-new-id-generator-mappings: false
-    show-sql: true
-    properties:
-        hibernate.format_sql: true
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  open-in-view: true
+  hibernate:
+    ddl-auto: create
+    naming:
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    use-new-id-generator-mappings: false
+  show-sql: true
+  properties:
+    hibernate.format_sql: true
+    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 sonar:
   organization: SonarCloud organization key 값
@@ -33,7 +33,7 @@ on:
     branches:
       - main
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [ opened, synchronize, reopened ]
 name: Sonar analysis
 jobs:
   sonarcloud:
