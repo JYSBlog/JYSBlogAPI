@@ -5,10 +5,10 @@ spring:
     #
     ## 데이터베이스 연결 설정
 
-    datasource:
-      url: jdbc:mysql://localhost:3307/blog
-      username: bloguser
-      password: blogpw
+  datasource:
+    url: jdbc:mysql://localhost:3307/blog
+    username: bloguser
+    password: blogpw
 
     # Hibernate 설정
 jpa:
