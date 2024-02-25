@@ -75,5 +75,8 @@ sonar {
 }
 
 test {
-    exclude '**/*Application*'
+    systemProperty 'spring.profiles.active', 'test'
+    useJUnitPlatform {
+        exclude("com/blog/**/*Application*.java")
+    }
 }
