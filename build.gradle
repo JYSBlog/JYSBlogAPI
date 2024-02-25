@@ -73,3 +73,7 @@ sonar {
         property 'sonar.java.coveragePlugin', 'jacoco'
     }
 }
+
+test {
+    exclude '**/*Application*'
+}
