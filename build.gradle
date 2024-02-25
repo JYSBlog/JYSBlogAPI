@@ -36,9 +36,8 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-//	//docker
-//	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
-//	testAndDevelopmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+    // Swagger
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 
 	// database
 	runtimeOnly 'com.mysql:mysql-connector-j'
