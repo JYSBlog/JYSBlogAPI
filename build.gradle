@@ -65,7 +65,7 @@ jacocoTestReport {
     }
 }
 
-sonar {
+sonarqube {
     properties {
         property 'sonar.host.url', 'https://sonarcloud.io'
         property "sonar.projectKey", "JYSBlog_JYSBlogAPI"
