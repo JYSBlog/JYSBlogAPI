@@ -25,7 +25,7 @@ public class JasyptConfig {
         config.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator"); // 솔트 생성기
         config.setStringOutputType("base64"); // 암호화된 문자열의 출력 형식
         encryptor.setConfig(config);
-
+        
         return encryptor;
     }
 }
