@@ -1,30 +1,28 @@
 package com.blog.jysblog;
 
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @SpringBootApplication
+@RequiredArgsConstructor
 public class JysBlogApplication implements WebMvcConfigurer {
 
-    @Value("${spring.application.name}")
-    private String applicationName;
-
-    @Value("${server.tomcat.threads.max:200}")
-    private String threadLimit;
-
-    @Value("${server.tomcat.accept-count:100}")
-    private String connectionLimit;
+    private final Environment env;
 
     public static void main(String[] args) {
         SpringApplication.run(JysBlogApplication.class, args);
@@ -45,13 +43,29 @@ public class JysBlogApplication implements WebMvcConfigurer {
         System.setProperty("aws.ec2.metadata.disabled", "true"); // AWS SDK가 EC2 인스턴스 메타데이터를 조회하지 않도록 설정
     }
 
+    private void monitoring() {
+        ScheduledExecutorService thread = new ScheduledThreadPoolExecutor(1);
+        thread.scheduleWithFixedDelay(() -> {
+            while (true) {
+                System.gc();
+                Runtime runtime = Runtime.getRuntime();
+                log.info("Max Memory   ::: {} MB ", runtime.maxMemory() / 1024 * 1024);
+                log.info("Using Memory ::: {} MB", (runtime.totalMemory() - runtime.freeMemory()) / (1024 * 1024));
+                try {
+                    TimeUnit.SECONDS.sleep(20);
+                } catch (InterruptedException e) {
+                    log.info("Memory Monitoring Error ...");
+                }
+            }
+        }, 20, 20, TimeUnit.SECONDS);
+    }
+
     @EventListener(ApplicationReadyEvent.class)
     public void applicationReadyEvent() {
-        log.info("Application Name ::: {}", applicationName);
-        log.info("Tomcat Thread Limit ::: {}", threadLimit);
-        log.info("Tomcat Connection Limit ::: {}", connectionLimit);
-        log.info("Locale ::: {}", Locale.getDefault());
-        log.info("Time Zone ::: {}", TimeZone.getDefault());
-        
+        log.info("Application Name ::: {}", env.getProperty("spring.application.name"));
+        log.info("Thread Limit     ::: {}", env.getProperty("server.tomcat.threads.max"));
+        log.info("Connection Limit ::: {}", env.getProperty("server.tomcat.accept-count"));
+        log.info("Locale           ::: {}", Locale.getDefault());
+        monitoring();
     }
 }
