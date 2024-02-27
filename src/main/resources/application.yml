@@ -1,65 +1,42 @@
 spring:
+  ## Application
   application:
     name: JYSBlog
-
-    #
-    ## 데이터베이스 연결 설정
-
+  ## Database
   datasource:
     url: jdbc:mysql://localhost:3307/blog
     username: bloguser
     password: blogpw
+  ## Hibernate
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
-    # Hibernate 설정
-jpa:
-  open-in-view: true
-  hibernate:
-    ddl-auto: create
-    naming:
-      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    use-new-id-generator-mappings: false
-  show-sql: true
-  properties:
-    hibernate.format_sql: true
-    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-
+## SonaCloud
 sonar:
-  organization: SonarCloud organization key 값
-  projectKey: SonarCloud project key 값
-  sources: .
+  organization: jysblog
+  projectKey: JYSBlog_JYSBlogAPI
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [ opened, synchronize, reopened ]
-name: Sonar analysis
-jobs:
-  sonarcloud:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-
-
+## Tomcat
 server:
   tomcat:
     accept-count: 100
     threads:
       max: 200
 
+## 암호화
 jasypt:
   encryptor:
     key:
 
+## Logging
 logging:
   level:
     root: info
