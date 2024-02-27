@@ -61,8 +61,8 @@ tasks.named('test') {
 
 jacocoTestReport {
     reports {
-        xml.required = false
-        csv.required = false
+        xml.required = true
+        csv.required = true
     }
 }
 
