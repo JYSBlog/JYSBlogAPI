@@ -58,10 +58,11 @@ tasks.named('test') {
     finalizedBy 'jacocoTestReport'
 }
 
+
 jacocoTestReport {
     reports {
-        xml.required = true
-        html.required = true
+        xml.required = false
+        csv.required = false
     }
 }
 
