@@ -19,11 +19,6 @@ spring:
       hibernate.format_sql: true
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
-## SonaCloud
-sonar:
-  organization: jysblog
-  projectKey: JYSBlog_JYSBlogAPI
-
 ## Tomcat
 server:
   tomcat:

@@ -58,10 +58,11 @@ tasks.named('test') {
     finalizedBy 'jacocoTestReport'
 }
 
+
 jacocoTestReport {
     reports {
-        xml.required = true
-        html.required = true
+        xml.required = false
+        csv.required = false
     }
 }
 
@@ -72,13 +73,13 @@ sonarqube {
         property "sonar.organization", "jysblog"
         // 자코코 결과 리포트 주소
         property 'sonar.coverage.jacoco.xmlReportPaths', 'build/reports/jacoco/test/jacocoTestReport.xml'
-        property 'sonar.sources', 'src'
-        property 'sonar.language', 'java'
-        property 'sonar.sourceEncoding', 'UTF-8'
+        //property 'sonar.sources', 'src'
+        //property 'sonar.language', 'java'
+        //property 'sonar.sourceEncoding', 'UTF-8'
         // 테스트 커버리지에서 제외할 클래스
-        property 'sonar.exclusions', '**/test/**, **/resources/**, **/*Application*.java, **/*Controller*.java, **/*Config.java' +
-                '**/*Response.java, **/*Exception.java, **/security/**, **/support/**, **/Q*.java'
-        property 'sonar.test.inclusions', '**/*Test.java'
-        property 'sonar.java.coveragePlugin', 'jacoco'
+        //property 'sonar.exclusions', '**/test/**, **/resources/**, **/*Application*.java, **/*Controller*.java, **/*Config.java' +
+        //        '**/*Response.java, **/*Exception.java, **/security/**, **/support/**, **/Q*.java'
+        //property 'sonar.test.inclusions', '**/*Test.java'
+        //property 'sonar.java.coveragePlugin', 'jacoco'
     }
 }
