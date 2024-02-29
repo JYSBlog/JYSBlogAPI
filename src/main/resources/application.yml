@@ -7,6 +7,13 @@ spring:
     url: jdbc:mysql://localhost:3307/blog
     username: bloguser
     password: blogpw
+    hikari:
+      maximum-pool-size: 10     # 사용중인 connection 을 포함하여 Pool 에 보관가능한 최대 Connection 개수
+      minimum-idle: 10          #  DBCP 에서 유지되는 최소 유휴(Idle) 커넥션의 수, App 이 요청할 때 즉시 사용할 수 있는 커넥션의 최소 개수를 보장
+      idle-timeout: 600000      # 특정 시간동안 사용되지 않은 (Idle 상태인) Connect 이 Pool 에서 유지되는 최대 시간, 10분
+      connection-timeout: 30000 # Application 이  DBCP 에서 Connection 을 가져올 때 기다릴 수 있는 최대 시간, 30초
+      max-lifetime: 1800000     # DBCP 내의 Connection 이 유지될 수 있는 최대 수명, 30분
+
   ## Hibernate
   jpa:
     open-in-view: true
@@ -21,10 +28,15 @@ spring:
 
 ## Tomcat
 server:
+  port: 8080
   tomcat:
-    accept-count: 100
     threads:
-      max: 200
+      max: 200                # 생성할 수 있는 thread 의 총 개수
+      min-spare: 10           # 항상 활성화 되어있는 (idle) Thread 의 개수
+    max-connections: 8192     # 수립 가능한 Connection 의 총 개수
+    connection-timeout: 20000 # 클라이언트의 요청 데이터를 처리할 수 있는 시간, 20초
+    accept-count: 100         # 대기 Connection 의 총 개수 , max-connections 이 모두 찼을때, Queue 에 대기 Connection 을 추가
+    keep-alive-timeout: 100   # 서버가 클라이언트의 연결을 그대로 유지하며 추가적인 HTTP 요청을 기다리는 최대 시간, 100초
 
 ## 암호화
 jasypt:

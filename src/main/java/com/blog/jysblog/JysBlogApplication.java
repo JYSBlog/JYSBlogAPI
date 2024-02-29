@@ -46,26 +46,20 @@ public class JysBlogApplication implements WebMvcConfigurer {
     private void monitoring() {
         ScheduledExecutorService thread = new ScheduledThreadPoolExecutor(1);
         thread.scheduleWithFixedDelay(() -> {
-            while (true) {
-                System.gc();
-                Runtime runtime = Runtime.getRuntime();
-                log.info("Max Memory   ::: {} MB ", runtime.maxMemory() / 1024 * 1024);
-                log.info("Using Memory ::: {} MB", (runtime.totalMemory() - runtime.freeMemory()) / (1024 * 1024));
-                try {
-                    TimeUnit.SECONDS.sleep(20);
-                } catch (InterruptedException e) {
-                    log.info("Memory Monitoring Error ...");
-                }
-            }
-        }, 20, 20, TimeUnit.SECONDS);
+            System.gc();
+            Runtime runtime = Runtime.getRuntime();
+            log.info("Max Memory   ::: {} MB ", runtime.maxMemory() / 1024 * 1024);
+            log.info("Using Memory ::: {} MB", (runtime.totalMemory() - runtime.freeMemory()) / (1024 * 1024));
+        }, 60, 60, TimeUnit.SECONDS);
     }
 
     @EventListener(ApplicationReadyEvent.class)
     public void applicationReadyEvent() {
         log.info("Application Name ::: {}", env.getProperty("spring.application.name"));
-        log.info("Thread Limit     ::: {}", env.getProperty("server.tomcat.threads.max"));
-        log.info("Connection Limit ::: {}", env.getProperty("server.tomcat.accept-count"));
         log.info("Locale           ::: {}", Locale.getDefault());
+        log.info("Thread Limit     ::: {}", env.getProperty("server.tomcat.threads.max"));
+        log.info("Connection Limit ::: {}", env.getProperty("server.tomcat.max-connections"));
+        log.info("Hikari Pool Size ::: {}", env.getProperty("spring.datasource.hikari.maximum-pool-size"));
         monitoring();
     }
 }
