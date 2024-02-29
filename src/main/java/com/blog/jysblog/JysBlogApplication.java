@@ -50,7 +50,7 @@ public class JysBlogApplication implements WebMvcConfigurer {
             Runtime runtime = Runtime.getRuntime();
             log.info("Max Memory   ::: {} MB ", runtime.maxMemory() / 1024 * 1024);
             log.info("Using Memory ::: {} MB", (runtime.totalMemory() - runtime.freeMemory()) / (1024 * 1024));
-        }, 20, 20, TimeUnit.SECONDS);
+        }, 60, 60, TimeUnit.SECONDS);
     }
 
     @EventListener(ApplicationReadyEvent.class)
