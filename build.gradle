@@ -2,8 +2,8 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.3'
     id 'io.spring.dependency-management' version '1.1.4'
-    id "jacoco"
     id "org.sonarqube" version '4.0.0.2929'
+    id "jacoco"
 }
 
 group = 'com.blog'
@@ -46,7 +46,6 @@ dependencies {
 
     // jasypt
     implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
-
 }
 
 jar {
@@ -61,8 +60,8 @@ tasks.named('test') {
 
 jacocoTestReport {
     reports {
-        xml.required = true
-        csv.required = true
+        xml.enabled true
+        csv.enabled true
     }
 }
 
@@ -73,13 +72,13 @@ sonarqube {
         property "sonar.organization", "jysblog"
         // 자코코 결과 리포트 주소
         property 'sonar.coverage.jacoco.xmlReportPaths', 'build/reports/jacoco/test/jacocoTestReport.xml'
+        property 'sonar.sourceEncoding', 'UTF-8'
+        property 'sonar.language', 'java'
         //property 'sonar.sources', 'src'
-        //property 'sonar.language', 'java'
-        //property 'sonar.sourceEncoding', 'UTF-8'
         // 테스트 커버리지에서 제외할 클래스
+        property 'sonar.test.inclusions', '**/*Test.java'
+        property 'sonar.java.coveragePlugin', 'jacoco'
         //property 'sonar.exclusions', '**/test/**, **/resources/**, **/*Application*.java, **/*Controller*.java, **/*Config.java' +
         //        '**/*Response.java, **/*Exception.java, **/security/**, **/support/**, **/Q*.java'
-        //property 'sonar.test.inclusions', '**/*Test.java'
-        //property 'sonar.java.coveragePlugin', 'jacoco'
     }
 }
