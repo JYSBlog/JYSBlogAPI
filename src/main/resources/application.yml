@@ -50,3 +50,9 @@ logging:
   pattern:
     console: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
 
+jwt:
+  secret-key: bWVnYWR4LWRtcC1zZXJ2aWNlLWRldmVsb3Atc2VjdXJpdHkta2V5LXZhbHVlLTIzMDEzMQ==
+  # access token valid time (1시간) 60 * 60 * 1000
+  access-valid-time: 3600000
+  # refresh token valid time (30일) 60 * 60 * 24 * 30 * 1000
+  refresh-valid-time: 2592000000
