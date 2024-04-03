@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -20,9 +22,16 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @SpringBootApplication
 @RequiredArgsConstructor
+@RestController
 public class JysBlogApplication implements WebMvcConfigurer {
 
     private final Environment env;
+
+    @GetMapping("/hello")
+    public String hello (){
+        return "hello";
+    }
+
 
     public static void main(String[] args) {
         SpringApplication.run(JysBlogApplication.class, args);
