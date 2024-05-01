@@ -4,9 +4,9 @@ spring:
     name: JYSBlog
   ## Database
   datasource:
-    url: jdbc:mysql://52.78.169.21:3306/blog
-    username: blog
-    password: 1234
+    url: jdbc:mysql://localhost:3307/blog
+    username: bloguser
+    password: blogpw
     hikari:
       maximum-pool-size: 10     # 사용중인 connection 을 포함하여 Pool 에 보관가능한 최대 Connection 개수
       minimum-idle: 10          #  DBCP 에서 유지되는 최소 유휴(Idle) 커넥션의 수, App 이 요청할 때 즉시 사용할 수 있는 커넥션의 최소 개수를 보장
@@ -18,7 +18,7 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
