@@ -30,7 +30,15 @@ public class SecurityConfig {
     private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
     public static final String[] PERMIT_ALL = {
-        "/api-docs/**", "/swagger-ui**", "/swagger-ui/**", "/login", "/api/login", "/api/join"
+        "/api-docs/**", "/swagger-ui**", "/swagger-ui/**", "/login", "/api/login", "/api/join",
+        "/api-docs",  //여기서 부터 swagger 때문에 임시 추가 확인 후 수정 or 삭제
+        "/swagger-ui-custom.html",
+        "/v3/api-docs/**",
+        "/swagger-ui/**",
+        "/api-docs/**",
+        "/swagger-ui.html",
+        "/swagger-custom-ui.html",
+        "/board/**"
     };
 
     public static final String[] AUTH_ALL = {
